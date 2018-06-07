@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class Cors 
+class Cors
 {
     /**
      * Handle an incoming request.
@@ -22,7 +22,6 @@ class Cors
             'Access-Control-Allow-Headers' => 'Content-Type, X-Auth-Token, Origin, Authorization'
         ];
         if ($request->getMethod() == "OPTIONS") {
-            // The client-side application can set only headers allowed in Access-Control-Allow-Headers
             return \Response::make('OK', 200, $headers);
         }
         $response = $next($request);

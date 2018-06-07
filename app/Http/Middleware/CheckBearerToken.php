@@ -55,7 +55,7 @@ class CheckBearerToken extends ApiControllerUtil
             return $this->sendError('jwt.no_validate_cgu');
         }
 
-        // --> 
+        // -->
         return $next($request);
     }
 

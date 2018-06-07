@@ -12,6 +12,7 @@ use App\Http\Requests\AuthLogInReq;
 // --- Tools.
 use App\Utils\ApiControllerUtil;
 use App\Providers\JsonWebTokenProvider;
+use App\Utills\FunctionsUtil;
 
 class AuthController extends ApiControllerUtil
 {
@@ -30,7 +31,7 @@ class AuthController extends ApiControllerUtil
         $user->green_mod = 0;
         $user->role = 0;
         $user->cgu = true;
-        $user->cgu_at = $this->getCurrentDate();
+        $user->cgu_at = FunctionsUtil::getCurrentDate();
         $user->save();
         return $this->sendResponse($user->toArray());
     }
