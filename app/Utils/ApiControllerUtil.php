@@ -8,37 +8,15 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use App\Traits\ApiResponseTrait;
 
 class ApiControllerUtil extends BaseController
 {
 
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
-    public function sendResponse($result = null, $message = null)
-    {
-        $response = [
-            'success' => true,
-            'data'    => $result,
-            'message' => $message,
-        ];
-
-        return response()->json($response, 200);
-    }
-
-
-    public function sendError($error, $errorMessages = [], $code = 400)
-    {
-        $response = [
-            'success' => false,
-            'message' => $error,
-        ];
-
-        if (! empty($errorMessages)) {
-            $response['data'] = $errorMessages;
-        }
-
-        return response()->json($response, $code);
-    }
+    use AuthorizesRequests,
+        DispatchesJobs,
+        ValidatesRequests,
+        ApiResponseTrait;
 
     public function getCurrentTimestamp()
     {
